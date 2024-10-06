@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   build-deploy:
@@ -17,22 +18,21 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: '18'  # Node.js 18 版本
-        cache: 'pnpm'
 
-    - name: Enable pnpm with corepack
-      run: corepack enable pnpm  # 启用 pnpm
+    - name: Install pnpm
+      run: npm install -g pnpm  # 使用 npm 全局安装 pnpm
 
     - name: Verify pnpm installation
-      run: pnpm --version  # 验证 pnpm 是否成功启用
+      run: pnpm --version  # 验证 pnpm 安装成功
 
     - name: Install dependencies
-      run: pnpm install  # 安装项目依赖
+      run: pnpm install  # 使用 pnpm 安装依赖
 
     - name: Build the project
-      run: pnpm run build  # 构建项目
+      run: pnpm run build  # 使用 pnpm 构建项目
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./dist  # 构建输出的目录
+        publish_dir: ./dist  # 构建输出目录
