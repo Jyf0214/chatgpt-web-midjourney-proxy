@@ -28,7 +28,7 @@ model:[ 'o1','o1-2024-12-17', 'gpt-4-turbo-2024-04-09','o1-preview','o1-mini','o
 ,'grok-3','grok-3-reasoner','grok-3-deepsearch'
 ,'gpt-4.5-preview-2025-02-27','gpt-4.5-preview'
 ]
-,maxToken:4096
+,maxToken:60896
 }); 
 const st= ref({openMore:false,isShow:false ,server:'' });
 const voiceList= computed(()=>{
