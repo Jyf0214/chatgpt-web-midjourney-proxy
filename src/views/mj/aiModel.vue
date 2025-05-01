@@ -94,9 +94,9 @@ const saveChat=(type:string)=>{
  
 watch(()=>nGptStore.value.model,(n)=>{
     nGptStore.value.gpts=undefined;
-    let max=4096*2*2;
+    let max=60896*2*2;
     if( n.indexOf('vision')>-1){
-        max=4096*2;
+        max=60896*2;
     }else if(  n.indexOf('o1-mini')>-1){  
         max=65536 *2;
     }else if(  n.indexOf('o1-')>-1 || n=='o1' ){  
@@ -104,13 +104,13 @@ watch(()=>nGptStore.value.model,(n)=>{
     }else if( n=='gpt-4o-2024-08-06' || n=='chatgpt-4o-latest' || n.indexOf('gpt-4o')>-1 || n.indexOf('gpt-4.5')>-1){  
         max=16384 *2;
     }else if( n.indexOf('gpt-4')>-1 ||  n.indexOf('16k')>-1 ||  n.indexOf('o1-')>-1 ){ //['16k','8k','32k','gpt-4'].indexOf(n)>-1
-        max=4096*2;
+        max=60896*2;
     }else if( n.toLowerCase().includes('claude-3-5')|| n.toLowerCase().includes('sonnet') 
         ||n.toLowerCase().includes('grok-3')
      ||  n.toLowerCase().includes('deepseek') ){ //deepseek
-        max=4096*2*2;
+        max=60896*2*2;
     }else if( n.toLowerCase().includes('claude-3') ){
-         max=4096*2;
+         max=60896*2;
     }
 
     config.value.maxToken=max/2;
